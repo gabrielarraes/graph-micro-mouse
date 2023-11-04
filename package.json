@@ -1,0 +1,17 @@
+{
+  "name": "pi-grafos",
+  "version": "1.0.0",
+  "description": "pi-grafos",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "--test"
+  },
+  "author": "gabriel arraes barbosa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
+    "ssl-root-cas": "^1.3.1"
+  }
+}
