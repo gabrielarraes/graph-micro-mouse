@@ -1,5 +1,5 @@
 import express from 'express';
-import * as dfs from './public/dfs.js';
+import * as dfs from './public/algorithms/dfs.js';
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
@@ -14,22 +14,7 @@ app.listen(port, () => {
     console.log(`Now listening on port ${ port }`);
 });
 
-const graph = {
-    A: {
-        visited: false,
-        value: 'A',
-        list: ['B', 'C']
-    },
-    B: {
-        visited: false,
-        value: 'B',
-        list: ['A']
-    },
-    C: {
-        visited: false,
-        value: 'C',
-        list: ['A']
-    }
-}
-
-dfs.run();
+dfs.run().then(dfsRunResponse => {
+    console.log('caminho válido: ', dfsRunResponse.caminho_valido)
+    console.log('quantidade de movimentos: ', dfsRunResponse.quantidade_movimentos)
+});
