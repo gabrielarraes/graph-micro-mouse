@@ -1,5 +1,5 @@
 import express from 'express';
-import * as dfs from './public/algorithms/dfs.js';
+import * as dfs from './public/algorithms/dfs/dfs.js';
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 

@@ -1,16 +1,11 @@
-import * as api from "../fetch/fetch-maze-api.js";
+import * as api from "../../consumer/maze-api-consumer.js";
 import { parentPort } from 'worker_threads'
 
 let visited = new Set();
 let moviments = [];
 
 parentPort.on('message', async (data) => {
-    let initialPosition = {
-        pos_atual: 0,
-        inicio: false,
-        final: false,
-        movimentos: []
-    };
+    let initialPosition = { pos_atual: 0, inicio: false, final: false, movimentos: [] };
 
     await api.initializeMaze(data.userId, data.maze).then(start => {
         initialPosition = start
@@ -20,8 +15,11 @@ parentPort.on('message', async (data) => {
     await dfs(initialPosition, data.userId, data.maze);
 
     await api.validatePath(data.userId, data.maze, moviments).then(dfsRunResponse => {
-        console.log('caminho válido: ', dfsRunResponse.caminho_valido)
-        console.log('quantidade de movimentos: ', dfsRunResponse.quantidade_movimentos)
+        console.log(
+            'labirinto:', data.maze,
+            '| solução é válida:', dfsRunResponse.caminho_valido,
+            '| quantidade de movimentos:', dfsRunResponse.quantidade_movimentos
+        );
     });
 })
 

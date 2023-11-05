@@ -1,4 +1,4 @@
-import * as api from '../fetch/fetch-maze-api.js'
+import * as api from '../../consumer/maze-api-consumer.js'
 import { Worker } from 'worker_threads'
 
 export async function run() {
@@ -6,17 +6,17 @@ export async function run() {
     let mazes = [];
     let completedWorkers = 0;
 
-    await api.getMazeList().then(mazeList => mazes = JSON.parse(mazeList));
+    await api.getMazeList().then(mazeList => mazes = mazeList);
 
     mazes.forEach((maze, index) => {
-        const worker = new Worker("./public/algorithms/dfs-worker.js");
+        const worker = new Worker("./public/algorithms/dfs/dfs-worker.js");
+
         worker.postMessage({
             userId: `${userId}${index}`,
             maze: maze
         });
 
         worker.on("message", () => {
-            console.log(`worker ${index} completed.`);
             completedWorkers++;
 
             if(completedWorkers === mazes.length) {
