@@ -14,7 +14,4 @@ app.listen(port, () => {
     console.log(`Now listening on port ${ port }`);
 });
 
-dfs.run().then(dfsRunResponse => {
-    console.log('caminho válido: ', dfsRunResponse.caminho_valido)
-    console.log('quantidade de movimentos: ', dfsRunResponse.quantidade_movimentos)
-});
+dfs.run()

@@ -29,11 +29,16 @@ export async function validatePath(userId, maze, moviments) {
 }
 
 export async function move(id, maze, newPosition) {
+
     const moveResposne = await fetch(`${baseUrl}/movimentar`, {
-            headers: { "Content-type": "application/json" },
-            method: "POST",
-            body: JSON.stringify({ id: id, labirinto: maze, nova_posicao: newPosition })
-        });
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({ id: id, labirinto: maze, nova_posicao: newPosition })
+    })
+
+    if(moveResposne.status !== 200) {
+        await moveResposne.json().then(e => console.log(e))
+    }
 
     return moveResposne.json();
 }
