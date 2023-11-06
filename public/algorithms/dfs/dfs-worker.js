@@ -1,5 +1,5 @@
 import * as api from "../../consumer/maze-api-consumer.js";
-import { parentPort } from 'worker_threads'
+import { parentPort } from 'worker_threads';
 
 let visited = new Set();
 let moviments = [];
@@ -55,7 +55,7 @@ export async function dfs(position, user, maze, parent) {
 }
 
 async function move(id, maze, newPosition) {
-    let result = {}
+    let result = { }
 
     await api.move(id, maze, newPosition).then(res => {
         if(res.pos_atual) {
