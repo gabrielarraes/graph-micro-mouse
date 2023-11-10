@@ -1,5 +1,7 @@
 import express from 'express';
 import * as dfs from './public/algorithms/dfs/dfs.js';
+import * as bfs from './public/algorithms/bfs/bfs.js';
+
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
@@ -14,4 +16,6 @@ app.listen(port, () => {
     console.log(`Now listening on port ${ port }`);
 });
 
-dfs.run()
+//dfs.run()
+
+bfs.run()
