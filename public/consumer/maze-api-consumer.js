@@ -47,9 +47,5 @@ export async function move(id, maze, newPosition) {
 
     const responseBody = await moveResposne.body.json();
 
-    if(moveResposne.statusCode !== 200) {
-        console.log("Error on move response:",responseBody)
-    }
-
     return responseBody
 }
